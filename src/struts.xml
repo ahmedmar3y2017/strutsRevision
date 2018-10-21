@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts  
+Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+
+<struts>
+
+	<package name="default" namespace="/tutorials" extends="struts-default">
+
+		<action name="getTutorial" class="com.struts2.TutorialAction" method="executeAnotherMethod">
+			<result name="success">/success.jsp</result>
+			<result name="failure">/error.jsp</result>
+
+		</action>
+		
+		<action name="addTutorial" class="com.struts2.TutorialAction" method="addTutorial">
+			<result name="success">/success.jsp</result>
+			<result name="failure">/error.jsp</result>
+
+		</action>
+
+
+	</package>
+
+	<package name="search" namespace="/" extends="struts-default">
+		<action name="index">
+			<result>/index.jsp</result>
+
+		</action>
+
+		<action name="index*">
+			<result>/indexWildcard.jsp</result>
+
+		</action>
+
+	</package>
+
+	<include file="login.xml"></include>
+
+
+
+</struts>
