@@ -4,49 +4,50 @@ import org.apache.commons.lang.StringUtils;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.Preparable;
 
-public class loginAction extends ActionSupport {
+public class loginAction extends ActionSupport implements ModelDriven<User> ,  Preparable {
 
-	private String username;
-	private String password;
+	private User user = new User() ;
 
-	public String getUsername() {
-		return username;
+
+	
+	public User getUser() {
+		return user;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public void validate() {
 		// TODO Auto-generated method stub
 		System.out.println("validation");
 
-		System.out.println(getUsername());
-		
-		if (StringUtils.isEmpty(getUsername())) {
+		System.out.println(user.getUsername());
+
+		if (StringUtils.isEmpty(user.getUsername())) {
 
 			addFieldError("username", "Error UserName is required");
 
 		}
-		if (StringUtils.isEmpty(getPassword())) {
+		if (StringUtils.isEmpty(user.getPassword())) {
 			addFieldError("password", "Error Password is required");
 
 		}
 
 	}
 
-	public String execute() {
+	public String execute() { 
+		
+		int x =20/0;
+		loginService loginService = new loginService();
 
-		if (getUsername().equals("admin") && getPassword().equals("admin")) {
+		
+		
+
+		if (loginService.loginService(user)) {
 
 			return SUCCESS;
 
@@ -56,6 +57,24 @@ public class loginAction extends ActionSupport {
 
 		}
 
+	}
+
+	
+	
+	
+	public User getModel() {
+		// TODO Auto-generated method stub
+	    user=new User();  
+
+		return user;
+	}
+
+	@Override
+	public void prepare() throws Exception {
+
+		System.out.println("Before Business Logic ");
+		
+		
 	}
 
 }

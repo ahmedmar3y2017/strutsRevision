@@ -26,10 +26,11 @@ public class TutorialAction {
 
 		TutorialFinderService finderService = new TutorialFinderService();
 
+		
 		setTutorialName(finderService.getTutorial(getLanguage()));
 
-		System.out.println(getLanguage());
-
+		System.out.println("Language is " + getLanguage());
+  
 		return "success";
 
 	}

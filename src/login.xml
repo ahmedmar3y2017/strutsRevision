@@ -1,21 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts  
-Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">  
+Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 
 <struts>
 
 
-<package name="login" namespace="/" extends="struts-default">
+	<package name="login" namespace="/" extends="struts-default">
 
-<action name="login"  class="com.struts2.loginAction"> 
-<result name="success" >/index.jsp</result>
-<result name="login" >/login.jsp</result>
-<result name="input" >/login.jsp</result>
 
- </action>
- 
-</package>
+
+		<action name="login" class="com.struts2.loginAction">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+			
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="execAndWait" />
+			
+			<result name="success">/index.jsp</result>
+			<result name="login">/login.jsp</result>
+			<result name="input">/login.jsp</result>
+			<result name="wait">/myintermediatepage.jsp</result>
+
+
+		</action>
+
+	</package>
 
 
 </struts>
